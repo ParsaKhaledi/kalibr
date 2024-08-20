@@ -5,19 +5,42 @@ on:
     branches: [ master, dockerfile ]
   pull_request:
 
+env:
+  Registery: docker.io
+  ImageName: alienkh/kalibr
+  ImageTag: 1.${{ github.run_number }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Code Checkout
-        uses: actions/checkout@v2
-      - name: Create Workspace
-        run: |
-          export REPO=$(basename $GITHUB_REPOSITORY) &&
-          cd $GITHUB_WORKSPACE/.. && mkdir src/ &&
-          mv $REPO/ src/ && mkdir $REPO/ && mv src/ $REPO/ && cd $REPO/
-      - name: Build Docker
-        run: |
-          export REPO=$(basename $GITHUB_REPOSITORY) &&
-          docker build -t kalibr -f $GITHUB_WORKSPACE/src/$REPO/Dockerfile_ros1_20_04 .
+      - name: Login to DockerHub
+       
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.Registery }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and Push docker image
+        id: build-and-push-NoGPU
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags:   ${{ env.Registery }}/${{ env.ImageName }}:dev_noGPU_${{ env.ImageTag }}
+          file: ./Docker/Dockerfile_ros1_20_04
+          # labels: ${{ steps.meta.outputs.labels }}      
+
+
+
+          
+      # - name: Create Workspace
+      #   run: |
+      #     export REPO=$(basename $GITHUB_REPOSITORY) &&
+      #     cd $GITHUB_WORKSPACE/.. && mkdir src/ &&
+      #     mv $REPO/ src/ && mkdir $REPO/ && mv src/ $REPO/ && cd $REPO/
+      # - name: Build Docker
+      #   run: |
+      #     export REPO=$(basename $GITHUB_REPOSITORY) &&
+      #     docker build -t kalibr -f $GITHUB_WORKSPACE/src/$REPO/Dockerfile_ros1_20_04 .
 
