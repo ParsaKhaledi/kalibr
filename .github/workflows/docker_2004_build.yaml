@@ -2,7 +2,7 @@ name: "ROS1 Ubuntu 20.04"
 
 on:
   push:
-    branches: [ master, dockerfile ]
+    branches: [ master, ./Docker/Dockerfile_ros1_20_04 ]
   pull_request:
 
 env:
@@ -26,6 +26,7 @@ jobs:
         id: build-and-push-NoGPU
         uses: docker/build-push-action@v2
         with:
+
           push: true
           tags:   ${{ env.Registery }}/${{ env.ImageName }}:dev_noGPU_${{ env.ImageTag }}
           file: ./Docker/Dockerfile_ros1_20_04
