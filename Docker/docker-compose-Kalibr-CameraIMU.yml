@@ -61,11 +61,12 @@ services:
 
     command: /bin/bash -c "
       source /catkin_ws/devel/setup.bash && \
-      rosrun kalibr kalibr_calibrate_cameras \
+      rosrun kalibr kalibr_calibrate_imu_camera \
       --bag /RosBags/oak-d_Cam_IMU_Data2.bag \
       --target /data/april_3x3.yaml \
-      --models pinhole-radtan pinhole-radtan \
-      --topics /stereo_inertial_publisher/left/image_rect /stereo_inertial_publisher/right/image_rect"
+      --cam /data/oak-d-multi-camera/oak-d_Cam_IMU_Data2-camchain.yaml \
+      --imu /data/oak-d-imu-camera/imu-oak-d.yaml \
+      --imu-models calibrated "
 
       ## install python3-tk scipy
 
