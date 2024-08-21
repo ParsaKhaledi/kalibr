@@ -1,0 +1,34 @@
+#Accelerometer
+accelerometer_noise_density: 0.002186841816246753 
+accelerometer_random_walk: 0.0003813200687038481 
+
+#Gyroscope
+gyroscope_noise_density: 0.0003457560277163437 
+gyroscope_random_walk: 1.2359539694598483e-05 
+
+rostopic: '/stereo_inertial_publisher/imu' #Make sure this is correct
+update_rate: 400.0 #Make sure this is correct
+
+# ACCELEROMETER:
+# X Velocity Random Walk:  0.00213 m/s/sqrt(s)  0.12789 m/s/sqrt(hr)
+# Y Velocity Random Walk:  0.00155 m/s/sqrt(s)  0.09290 m/s/sqrt(hr)
+# Z Velocity Random Walk:  0.00219 m/s/sqrt(s)  0.13121 m/s/sqrt(hr)
+# X Bias Instability:  0.00081 m/s^2  10500.68318 m/hr^2
+# Y Bias Instability:  0.00034 m/s^2  4368.38962 m/hr^2
+# Z Bias Instability:  0.00051 m/s^2  6614.03232 m/hr^2
+# X Accel Random Walk:  0.00038 m/s^2/sqrt(s)
+# Y Accel Random Walk:  0.00017 m/s^2/sqrt(s)
+# Z Accel Random Walk:  0.00036 m/s^2/sqrt(s)
+# GYROSCOPE:
+# X Angle Random Walk:  0.01981 deg/sqrt(s)  1.18862 deg/sqrt(hr)
+# Y Angle Random Walk:  0.01483 deg/sqrt(s)  0.88984 deg/sqrt(hr)
+# Z Angle Random Walk:  0.01776 deg/sqrt(s)  1.06542 deg/sqrt(hr)
+# X Bias Instability:  0.00220 deg/s  7.92403 deg/hr
+# Y Bias Instability:  0.00214 deg/s  7.71024 deg/hr
+# Z Bias Instability:  0.00188 deg/s  6.76851 deg/hr
+# X Rate Random Walk:  0.00042 deg/s/sqrt(s)
+# Y Rate Random Walk:  0.00071 deg/s/sqrt(s)
+# Z Rate Random Walk:  0.00022 deg/s/sqrt(s)
+# Writing Kalibr imu.yaml file.
+# Make sure to update rostopic and rate.
+
